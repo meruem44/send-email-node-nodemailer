@@ -1,4 +1,4 @@
-import Mail from '../lib/Mail';
+import Queue from '../lib/Queue';
 import * as yup from 'yup';
 
 class UserController {
@@ -21,7 +21,8 @@ class UserController {
             password
         }
 
-        // Enviar um E-mail
+        //  Adicionar Job RegistrationMail na fila
+        await Queue.add({ user });
        
 
         return res.json(user);
